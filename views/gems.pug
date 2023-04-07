@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1= title 
+  - let results = [{name: "Emerald", color: "Green", hardness: 7.5}, {name: "Ruby", color: "Red", hardness: 9}, {name: "Sapphire", color: "Blue", hardness: 9}]
+  div(class="container-fluid")
+    div(class="row")
+        each item in results
+            div(class="col-sm-2") #{item.name} #{item.color} #{item.hardness}
