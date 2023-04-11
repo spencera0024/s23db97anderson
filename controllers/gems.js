@@ -1,8 +1,15 @@
 var Gem = require('../models/gems')
 
 //List of all Gems
-exports.gem_list = function(req, res) {
-    res.send('NOT IMPLEMENTED: Gem list');
+exports.gem_list = async function(req, res) {
+    try {
+        let theGems = await Gem.find();
+        res.send(theGems);
+    }
+    catch(err) {
+        res.status(500);
+        res.send(`{"error:" ${err}}`)
+    }
 };
 
 //for a specific Gem
