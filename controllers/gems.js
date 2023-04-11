@@ -18,8 +18,20 @@ exports.gem_details = function(req, res) {
 };
 
 //Handle Gem create on POST
-exports.gem_create_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: Gem create POST');
+exports.gem_create_post = async function(req, res) {
+    console.log(req.body)
+    let document = new Gem();
+    document.gem_type = req.body.gem_type;
+    document.cost = req.body.cost;
+    document.size = req.body.size;
+    try {
+        let result = await document.save();
+        res.send(result);
+    }
+    catch(err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`)
+    }
 };
 
 //Handle Gem delete form on DELETE
