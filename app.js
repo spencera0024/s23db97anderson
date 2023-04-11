@@ -64,6 +64,7 @@ var usersRouter = require('./routes/users');
 var gemsRouter = require('./routes/gems');
 var boardRouter = require('./routes/board');
 var selectorRouter = require('./routes/selector');
+var resourceRouter = require('./routes/resource');
 
 var app = express();
 
@@ -82,6 +83,7 @@ app.use('/users', usersRouter);
 app.use('/gems', gemsRouter);
 app.use('/board', boardRouter);
 app.use('/selector', selectorRouter);
+app.use('/resource', resourceRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
