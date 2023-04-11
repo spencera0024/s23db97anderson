@@ -2,8 +2,8 @@ extends layout
 
 block content
   h1= title 
-  - let results = [{name: "Emerald", color: "Green", hardness: 7.5}, {name: "Ruby", color: "Red", hardness: 9}, {name: "Sapphire", color: "Blue", hardness: 9}]
+  - let items = results
   div(class="container-fluid")
     div(class="row")
-        each item in results
+        each item in items
             div(class="col-sm-2") #{item.name} #{item.color} #{item.hardness}

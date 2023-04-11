@@ -32,3 +32,15 @@ exports.gem_update_put = function(req, res) {
     res.send('NOT IMPLEMENTED: Gem update PUT' + req.params.id);
 };
 
+//VIEWS 
+//Handle a show all view
+exports.gem_view_all_page = async function(req, res) {
+    try {
+        theGems = await Gem.find();
+        res.render('gems', {title: 'Gem Search Results', results: theGems})
+    }
+    catch(err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`)
+    }
+}

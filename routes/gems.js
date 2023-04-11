@@ -1,9 +1,8 @@
 var express = require('express');
+const gem_controllers = require('../controllers/gems')
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('gems', { title: 'Search Results: Gems' });
-});
+router.get('/', gem_controllers.gem_view_all_page);
 
 module.exports = router;
