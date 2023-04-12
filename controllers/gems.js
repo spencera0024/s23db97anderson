@@ -13,17 +13,25 @@ exports.gem_list = async function(req, res) {
 };
 
 //for a specific Gem
-exports.gem_details = function(req, res) {
-    res.send('NOT IMPLEMENTED: Gem detail: ' + req.params.id);
+exports.gem_details = async function(req, res) {
+    console.log("detail" + req.params.id);
+    try {
+        result = await Gem.findById(req.params.id);
+        res.send(result);
+    }
+    catch(error) {
+        res.status(500);
+        res.send(`{"error": document for id ${req.params.id} not found}`)
+    }
 };
 
 //Handle Gem create on POST
 exports.gem_create_post = async function(req, res) {
     console.log(req.body)
     let document = new Gem();
-    document.gem_type = req.body.gem_type;
-    document.cost = req.body.cost;
-    document.size = req.body.size;
+    document.name = req.body.name;
+    document.color = req.body.color;
+    document.hardness = req.body.hardness;
     try {
         let result = await document.save();
         res.send(result);
