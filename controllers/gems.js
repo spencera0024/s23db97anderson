@@ -14,7 +14,7 @@ exports.gem_list = async function(req, res) {
 
 //for a specific Gem
 exports.gem_details = async function(req, res) {
-    console.log("detail" + req.params.id);
+    console.log("detail " + req.params.id);
     try {
         result = await Gem.findById(req.params.id);
         res.send(result);
@@ -93,5 +93,28 @@ exports.gem_view_all_page = async function(req, res) {
     catch(err) {
         res.status(500);
         res.send(`{"error": ${err}}`)
+    }
+}
+
+//Handle a show one view with id specified by query
+exports.gem_view_one_Page = async function(req, res) {
+    console.log("single view for id " + req.query.id);
+    try {
+        result = await Gem.findById(req.query.id);
+        res.render('gemdetail', {title: 'Gem Detail', toShow: result});
+    } catch (err) {
+        res.status(500);
+        res.send(`{'error: ${err}'}`);
+    }
+}
+
+//Handle building the view for creating a gem
+exports.gem_create_Page = function(req, res) {
+    console.log("create view");
+    try {
+        res.render('gemcreate', {title: 'Gem Create'})
+    } catch(err) {
+        res.status(500);
+        res.send(`{'error': '${err}'}`);
     }
 }

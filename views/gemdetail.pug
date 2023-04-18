@@ -1,0 +1,21 @@
+extends layout
+block content
+
+    h1=title
+    - let gemid = toShow._id
+    - let gem_name = toShow.name
+    - let gem_color = toShow.color
+    - let gem_hardness = toShow.hardness
+    div
+        div.row 
+            div(class='gemAttr mr-3') Gem ID is:
+            div #{gemid} 
+        div.row 
+            div(class='gemAttr mr-3') Gem name is:
+            div #{gem_name}
+        div.row 
+            div(class='gemAttr mr-3') Gem color is: 
+            div #{gem_color}
+        div.row 
+            div(class='gemAttr mr-3') Gem hardness is:
+            div #{gem_hardness}
