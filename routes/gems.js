@@ -14,4 +14,7 @@ router.get('/create', gem_controllers.gem_create_Page);
 // GET create update page 
 router.get('/update', gem_controllers.gem_update_Page);
 
+// GET delete gem page
+router.get('/delete', gem_controllers.gem_delete_Page);
+
 module.exports = router;

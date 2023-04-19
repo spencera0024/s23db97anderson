@@ -1,0 +1,51 @@
+extends layout 
+
+block content
+    h1=title 
+
+    if(toShow == null)
+        h2 No instance to delete
+    else 
+        - let gemid = toShow._id 
+        - let gem_name = toShow.name 
+        - let gem_color = toShow.color 
+        - let gem_hardness = toShow.hardness
+        - let actionid = "/resource/gems/" + gemid 
+        script let actionid = "#{actionid}"
+        div
+            div.row 
+                div(class='gemAttr mr-3') Gem ID is: 
+                div #{gemid}
+            div.row 
+                div(class='gemAttr mr-3') Gem name is:
+                div #{gem_name}
+            div.row 
+                div(class='gemAttr mr-3') Gem color is:
+                div #{gem_color}
+            div.row 
+                div(class='gemAttr mr-3') Gem hardness is:
+                div #{gem_hardness}
+
+        button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+        button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+
+
+        script. 
+            function cancel() {
+                window.location.href='/gems'
+            }
+        script.
+            function deleteOnid() {
+                console.log("starting delete")
+                fetch(actionid, {
+                    method: 'DELETE'
+                }).then((resp) => {
+                    return resp.json();
+                }).then((body) => {
+                    alert("Delete succeeded");
+                }).catch((error) => {
+                    alert("Delete failed " + error);
+                });
+            }
+
+        
