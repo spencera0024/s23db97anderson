@@ -16,7 +16,7 @@ block content
         input(type='submit')
 
     script.
-         document.forms['GemForm'].addEventListener('submit', (event) => {
+        document.forms['GemForm'].addEventListener('submit', (event) => {
             event.preventDefault();
             fetch(event.target.action, {
                 method: 'POST',

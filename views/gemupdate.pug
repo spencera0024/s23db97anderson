@@ -1,0 +1,50 @@
+extends layout
+
+block content 
+    h1=title
+
+    - let gemid = toShow._id
+    - let gem_name = toShow.name
+    - let gem_color = toShow.color
+    - let gem_hardness = toShow.hardness
+
+    div.row(class='mb-2')
+        div.mr-1 ID is
+        div #{gemid}
+    - let actionid = "/resource/gems/" + gemid
+    form(id='GemForm', action=actionid, method="PUT")
+        div.form-group 
+            label.gemAttr(for='name') Gem name
+            input#gem_name(type='text', name='gem_name', value=gem_name)
+        div.form-group
+            label.gemAttr(for='color') Gem color
+            input#gem_color(type='text', name='color', value=gem_color)
+        div.form-group
+            label.gemAttr(for='hardness') Gem hardness
+            input#gem_hardness(type='number', name='hardness', value=gem_hardness)
+        input(type="submit")
+
+    script.
+        document.forms['GemForm'].addEventListener('submit', (event) => {
+            event.preventDefault();
+            fetch(event.target.action, {
+                method: 'PUT',
+                body: new URLSearchParams(new FormData(event.target))
+            }).then((resp) => {
+                return resp.json();
+            }).then((body) => {
+                alert("Save succeded")
+            }).catch((error) => {
+                alert("Save failed " + error )
+            });
+        });
+
+
+
+
+
+
+
+
+
+
