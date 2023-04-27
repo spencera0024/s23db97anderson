@@ -44,9 +44,8 @@ Account.findOne({ username : req.body.username })
   res.render('login', { title: 'Gem App Login', user : req.user });
  });
  router.post('/login', passport.authenticate('local'), function(req, res) {
-  if(req.session.toReturn){
-  console.log("Send it back to " + req.session.toReturn)
-  res.redirect(req.session.toReturn);
+  if(req.session.returnTo) {
+    res.redirect(req.session.returnTo);
   }
   res.redirect('/');
  });
