@@ -1,6 +1,15 @@
 extends layout
 
-block content
+block content 
+  div(class="container-fluid m-1")
+    div(class="row")
+    - let destination = `dispatch(\"/gems/create?")`
+    button.btn(class="btn-primary m1-1", onclick=destination) Create
+  br
+  div(class="container-fluid m-1")
+    div(class="row")
+          button.btn( class="btn-primary ml-1") Detail
+          button.btn( class="btn-primary ml-1") Delete
   if (!user)
     a(href="/login") Login
     br
@@ -10,3 +19,8 @@ block content
     a(href="/gems") Take me to gems
     br
     a(href="/logout") Logout
+
+    script. 
+      function dispatch(path) {
+        window.location.href=path;
+      }
