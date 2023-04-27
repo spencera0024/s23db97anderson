@@ -1,16 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to Spencer Andrson's #{title}
-  button(type="button", class="btn btn-secondary" onclick="doReduce()") Press Me
-  div(id="reduce") Reduce the value
-  script.
-    var count = 20
-    var change = -1
-    function doReduce() {
-      count = count + change
-      change--
-      document.getElementById("reduce").innerHTML = "Count " + count + " change " + change 
-    }
-  a(href="/gems") Gems
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/gems") Take me to gems
+    br
+    a(href="/logout") Logout
